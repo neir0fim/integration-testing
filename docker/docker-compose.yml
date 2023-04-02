@@ -7,3 +7,8 @@ services:
     environment:
       - KEYCLOAK_USER=${KEYCLOAK_USER}
       - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+      - KEYCLOAK_IMPORT=/tmp/import/realm-import.json
+
+    volumes:
+      - ./import/realm-import.json:/tmp/import/realm-import.json
+      - ./realms/export:/tmp/export

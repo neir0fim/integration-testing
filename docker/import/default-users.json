@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "username": "oleg",
+      "enabled": true,
+      "email": "oleg@test.com",
+      "firstName": "Oleg",
+      "lastName": "Travis",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "oleg"
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ],
+      "clientRoles": {
+        "account": [
+          "offline_access",
+          "uma_authorization",
+          "default-roles-integration-testing"
+        ]
+      }
+    }
+  ]
+}
