@@ -12,7 +12,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**")
+                .requestMatchers("/")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().oauth2ResourceServer()

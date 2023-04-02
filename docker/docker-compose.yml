@@ -4,11 +4,15 @@ services:
     image: jboss/keycloak:${KEYCLOAK_VERSION}
     ports:
       - "8024:8080"
+      - "8843:8443"
     environment:
       - KEYCLOAK_USER=${KEYCLOAK_USER}
       - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
       - KEYCLOAK_IMPORT=/tmp/import/realm-import.json
+      - KC_HTTPS_CERTIFICATE_FILE=/opt/keycloak/demo/certs/localhostcert.pem
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/opt/keycloak/demo/certs/localhostkey.pem
 
     volumes:
       - ./import/realm-import.json:/tmp/import/realm-import.json
       - ./realms/export:/tmp/export
+      - ./certs:/opt/keycloak/demo/certs
