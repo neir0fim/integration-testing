@@ -1,0 +1,5 @@
+rootProject.name = 'integration-testing'
+
+include 'domain'
+include 'persistence'
+include 'rest-api'

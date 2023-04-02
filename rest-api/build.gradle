@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.kuzin'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework:spring-web:6.0.7'
+    implementation 'org.springframework.security:spring-security-web:6.0.2'
+    implementation 'org.springframework.security:spring-security-oauth2-core:6.0.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
