@@ -1,4 +1,4 @@
-package com.integration.domain.models;
+package com.integration.models;
 
 import java.time.DayOfWeek;
 import java.util.List;

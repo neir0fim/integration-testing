@@ -1,4 +1,4 @@
-package com.integration.domain.models;
+package com.integration.models;
 
 public record Exercise(int exerciseId, String name) {
 }
