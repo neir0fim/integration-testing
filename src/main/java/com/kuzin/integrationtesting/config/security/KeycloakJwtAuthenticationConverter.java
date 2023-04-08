@@ -1,4 +1,4 @@
-package com.kuzin.integrationtesting.config;
+package com.kuzin.integrationtesting.config.security;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
