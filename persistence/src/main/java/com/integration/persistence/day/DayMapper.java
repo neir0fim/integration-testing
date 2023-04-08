@@ -1,12 +1,10 @@
 package com.integration.persistence.day;
 
 import com.integration.models.day.Day;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Configuration
 public class DayMapper implements RowMapper<Day> {
     @Override
     public Day mapRow(ResultSet rs, int rowNum) throws SQLException {
