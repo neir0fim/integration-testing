@@ -33,9 +33,10 @@ public class MuscleGroupService {
         return groupAdapter.getAllMuscleGroup();
     }
 
-    public void updateMuscleGroup(MuscleGroup group) {
-        validateString(group.groupName(), MUSCLE_GROUP);
+    public void updateMuscleGroup(String groupName, int groupId) {
+        validateString(groupName, MUSCLE_GROUP);
 
+        var group = new MuscleGroup(groupId, groupName);
         groupAdapter.updateMuscleGroup(group);
     }
 }

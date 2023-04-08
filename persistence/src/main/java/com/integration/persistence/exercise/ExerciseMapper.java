@@ -1,6 +1,6 @@
 package com.integration.persistence.exercise;
 
-import com.integration.models.Exercise;
+import com.integration.models.exercise.Exercise;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ public class ExerciseMapper implements RowMapper<Exercise> {
     public Exercise mapRow(ResultSet rs, int rowNum) throws SQLException {
         int id = rs.getInt("exercise_id");
         String description = rs.getString("description");
-        String groupTag = rs.getString("group_tag");
+        String groupTag = rs.getString("group_name");
 
         return new Exercise(id, description, groupTag);
     }

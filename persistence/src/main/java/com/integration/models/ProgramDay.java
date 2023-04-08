@@ -1,5 +1,7 @@
 package com.integration.models;
 
+import com.integration.models.exercise.Exercise;
+
 import java.time.DayOfWeek;
 import java.util.List;
 

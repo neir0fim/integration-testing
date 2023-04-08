@@ -47,8 +47,6 @@ public class MuscleGroupController {
             @PathVariable("groupId") int groupId,
             @RequestBody String groupName
     ) {
-        var group = new MuscleGroup(groupId, groupName);
-
-        service.updateMuscleGroup(group);
+        service.updateMuscleGroup(groupName, groupId);
     }
 }
