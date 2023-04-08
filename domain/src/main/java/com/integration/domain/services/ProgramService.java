@@ -4,12 +4,11 @@ import com.integration.models.program.ProgramDeletingRequest;
 import com.integration.models.program.ProgramSavingRequest;
 import com.integration.models.program.ProgramShortInfo;
 import com.integration.persistence.program.ProgramAdapter;
-import com.integration.util.ValidationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.Objects.isNull;
+import static com.integration.domain.util.ValidationUtil.validateString;
 
 @Service
 public class ProgramService {
@@ -40,11 +39,5 @@ public class ProgramService {
         return programAdapter.getOwnerProgram(ownerEmail);
     }
 
-    private void validateString(String values, String entity) {
-        if (isNull(values) || values.isBlank()) {
-            throw new ValidationException(
-                    String.format("%s email is empty.", entity)
-            );
-        }
-    }
+
 }
