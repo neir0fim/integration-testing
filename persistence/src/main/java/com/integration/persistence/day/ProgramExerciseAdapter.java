@@ -57,5 +57,4 @@ public class ProgramExerciseAdapter {
 
         return namedParameterJdbcTemplate.query(sqlRequest, map, new ExerciseProgramMapper());
     }
-
 }
