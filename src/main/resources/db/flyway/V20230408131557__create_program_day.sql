@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS program_day(
     program_day_id serial primary key ,
     program_id integer not null ,
     day_id integer not null,
+    training_status boolean default false,
     CONSTRAINT fk_program_id
                                         foreign key (program_id)
                                         references program(id)

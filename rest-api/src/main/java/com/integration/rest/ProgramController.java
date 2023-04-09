@@ -1,5 +1,7 @@
 package com.integration.rest;
 
+import com.integration.domain.dto.ProgramDayDto;
+import com.integration.domain.services.ProgramDayService;
 import com.integration.domain.services.ProgramService;
 import com.integration.models.program.ProgramDeletingRequest;
 import com.integration.models.program.ProgramSavingRequest;
@@ -21,13 +23,16 @@ import java.util.List;
 public class ProgramController {
     private final EmailResolver resolver;
     private final ProgramService service;
+    private final ProgramDayService dayService;
 
     public ProgramController(
             EmailResolver resolver,
-            ProgramService service
+            ProgramService service,
+            ProgramDayService dayService
     ) {
         this.resolver = resolver;
         this.service = service;
+        this.dayService = dayService;
     }
 
     @PostMapping
@@ -61,5 +66,12 @@ public class ProgramController {
         var userEmail = resolver.getUserEmail(principal);
 
         return service.getOwnerPrograms(userEmail);
+    }
+
+    @GetMapping("/{programId}/program-days")
+    public List<ProgramDayDto> getAllProgramDays(
+            @PathVariable("programId") int programId
+    ) {
+        return dayService.getALLProgramDays(programId);
     }
 }
