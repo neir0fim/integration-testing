@@ -13,12 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/program-days")
-public class ProgramDayController {
+@RequestMapping("/day-exercises")
+public class DayExercisesController {
     private final ProgramDayService programDayService;
 
-    public ProgramDayController(ProgramDayService programDayService) {
+    public DayExercisesController(ProgramDayService programDayService) {
         this.programDayService = programDayService;
+    }
+
+    @GetMapping("/{dayId}")
+    public ProgramDayFullInfoDto getDayExercises(@PathVariable("dayId") int dayId) {
+        return programDayService.getProgramDay(dayId);
     }
 
     @PostMapping
@@ -28,25 +33,16 @@ public class ProgramDayController {
         return programDayService.addProgramDay(requestDto);
     }
 
-    @PutMapping("/{programDayId})")
+    @PutMapping("/{dayId})")
     public void updateProgramDay(
-            @PathVariable("programDayId") int programDayId,
+            @PathVariable("dayId") int dayId,
             @RequestBody ProgramDayRequestDto requestDto
     ) {
-        programDayService.updateExercise(programDayId, requestDto);
+        programDayService.updateExercise(dayId, requestDto);
     }
 
-    @DeleteMapping("/{programDayId})")
-    public void deleteProgramDay(
-            @PathVariable("programDayId") int programDayId
-    ) {
-        programDayService.deleteProgramDay(programDayId);
-    }
-
-    @GetMapping("/{programDayId})")
-    public ProgramDayFullInfoDto getProgramDay(
-            @PathVariable("programDayId") int programDayId
-    ) {
-        return programDayService.getProgramDay(programDayId);
+    @DeleteMapping("/{dayId}")
+    public void deleteProgramDay(@PathVariable("dayId") int dayId) {
+        programDayService.deleteProgramDay(dayId);
     }
 }
