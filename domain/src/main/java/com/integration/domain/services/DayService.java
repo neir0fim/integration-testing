@@ -1,6 +1,6 @@
 package com.integration.domain.services;
 
-import com.integration.models.day.Day;
+import com.integration.domain.dto.DayDto;
 import com.integration.persistence.day.DayAdapter;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,14 @@ public class DayService {
         this.dayAdapter = dayAdapter;
     }
 
-    public List<Day> getDays() {
-        return dayAdapter.getDays();
+    public List<DayDto> getDays() {
+        return dayAdapter.getDays().stream()
+                .map(day -> new DayDto(
+                        day.id(),
+                        day.code(),
+                        day.description()
+                        )
+                )
+                .toList();
     }
 }

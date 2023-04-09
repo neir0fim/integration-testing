@@ -1,11 +1,11 @@
 package com.integration.rest;
 
 import com.integration.domain.dto.ProgramDayDto;
+import com.integration.domain.dto.ProgramDeletingRequestDto;
+import com.integration.domain.dto.ProgramSavingRequestDto;
+import com.integration.domain.dto.ProgramShortInfoDto;
 import com.integration.domain.services.ProgramDayService;
 import com.integration.domain.services.ProgramService;
-import com.integration.models.program.ProgramDeletingRequest;
-import com.integration.models.program.ProgramSavingRequest;
-import com.integration.models.program.ProgramShortInfo;
 import com.integration.rest.util.EmailResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +42,7 @@ public class ProgramController {
     ) {
         var userEmail = resolver.getUserEmail(principal);
 
-        var saveRequest = new ProgramSavingRequest(userEmail, programName);
+        var saveRequest = new ProgramSavingRequestDto(userEmail, programName);
 
         return service.createProgram(saveRequest);
     }
@@ -54,13 +54,13 @@ public class ProgramController {
     ) {
         var userEmail = resolver.getUserEmail(principal);
 
-        var deleteRequest = new ProgramDeletingRequest(programId, userEmail);
+        var deleteRequest = new ProgramDeletingRequestDto(programId, userEmail);
 
         service.deleteUserProgram(deleteRequest);
     }
 
     @GetMapping
-    public List<ProgramShortInfo> getOwnerPrograms(
+    public List<ProgramShortInfoDto> getOwnerPrograms(
             Authentication principal
     ) {
         var userEmail = resolver.getUserEmail(principal);

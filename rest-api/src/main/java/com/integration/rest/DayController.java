@@ -1,7 +1,7 @@
 package com.integration.rest;
 
+import com.integration.domain.dto.DayDto;
 import com.integration.domain.services.DayService;
-import com.integration.models.day.Day;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class DayController {
     }
 
     @GetMapping
-    public List<Day> getDays() {
+    public List<DayDto> getDays() {
         return service.getDays();
     }
 }

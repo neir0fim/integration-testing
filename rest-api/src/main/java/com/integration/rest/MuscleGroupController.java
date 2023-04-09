@@ -1,7 +1,7 @@
 package com.integration.rest;
 
+import com.integration.domain.dto.MuscleGroupDto;
 import com.integration.domain.services.MuscleGroupService;
-import com.integration.models.MuscleGroup;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,12 +33,12 @@ public class MuscleGroupController {
     }
 
     @GetMapping("/{groupId}")
-    public MuscleGroup getMuscleGroup(@PathVariable("groupId") int groupId) {
+    public MuscleGroupDto getMuscleGroup(@PathVariable("groupId") int groupId) {
         return service.getMuscleGroup(groupId);
     }
 
     @GetMapping
-    public List<MuscleGroup> getAllMuscleGroup() {
+    public List<MuscleGroupDto> getAllMuscleGroup() {
         return service.getAllMuscleGroup();
     }
 

@@ -1,6 +1,7 @@
 package com.integration.domain.services;
 
-import com.integration.models.exercise.Exercise;
+import com.integration.domain.dto.ExerciseDto;
+import com.integration.domain.dto.ExerciseUpdateRequestDto;
 import com.integration.models.exercise.ExerciseUpdateRequest;
 import com.integration.persistence.exercise.ExerciseAdapter;
 import org.springframework.stereotype.Service;
@@ -18,27 +19,48 @@ public class ExerciseService {
         this.adapter = adapter;
     }
 
-    public void addExercise(ExerciseUpdateRequest updateRequest) {
+    public void addExercise(ExerciseUpdateRequestDto updateRequest) {
         validateString(updateRequest.exerciseDescription(), EXERCISE_DESCRIPTION);
 
-        adapter.addExercise(updateRequest);
+        var persistenceRequest = new ExerciseUpdateRequest(
+                updateRequest.exerciseDescription(),
+                updateRequest.muscleGroupId()
+        );
+
+        adapter.addExercise(persistenceRequest);
     }
 
-    public void updateExercise(int exerciseId, ExerciseUpdateRequest updateRequest) {
+    public void updateExercise(int exerciseId, ExerciseUpdateRequestDto updateRequest) {
         validateString(updateRequest.exerciseDescription(), EXERCISE_DESCRIPTION);
 
-        adapter.updateExercise(exerciseId, updateRequest);
+        var persistenceRequest = new ExerciseUpdateRequest(
+                updateRequest.exerciseDescription(),
+                updateRequest.muscleGroupId()
+        );
+
+        adapter.updateExercise(exerciseId, persistenceRequest);
     }
 
     public void deleteExercise(int exerciseId) {
         adapter.deleteExercise(exerciseId);
     }
 
-    public Exercise getExercise(int exerciseId) {
-        return adapter.getExercise(exerciseId);
+    public ExerciseDto getExercise(int exerciseId) {
+        var exercise = adapter.getExercise(exerciseId);
+        return new ExerciseDto(
+                exercise.exerciseId(),
+                exercise.name(),
+                exercise.group()
+        );
     }
 
-    public List<Exercise> getALLExercise() {
-        return adapter.getALLExercise();
+    public List<ExerciseDto> getALLExercise() {
+        return adapter.getALLExercise().stream()
+                .map(exercise -> new ExerciseDto(
+                        exercise.exerciseId(),
+                        exercise.name(),
+                        exercise.group())
+                )
+                .toList();
     }
 }

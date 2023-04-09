@@ -1,8 +1,10 @@
 package com.integration.domain.services;
 
+import com.integration.domain.dto.ProgramDeletingRequestDto;
+import com.integration.domain.dto.ProgramSavingRequestDto;
+import com.integration.domain.dto.ProgramShortInfoDto;
 import com.integration.models.program.ProgramDeletingRequest;
 import com.integration.models.program.ProgramSavingRequest;
-import com.integration.models.program.ProgramShortInfo;
 import com.integration.persistence.program.ProgramAdapter;
 import org.springframework.stereotype.Service;
 
@@ -20,24 +22,38 @@ public class ProgramService {
         this.programAdapter = programAdapter;
     }
 
-    public int createProgram(ProgramSavingRequest request) {
+    public int createProgram(ProgramSavingRequestDto request) {
         validateString(request.name(), PROGRAM_NAME);
         validateString(request.ownerEmail(), OWNER_EMAIL);
 
-        return programAdapter.createNewProgram(request);
+        var domainRequest = new ProgramSavingRequest(
+                request.ownerEmail(),
+                request.name()
+        );
+
+        return programAdapter.createNewProgram(domainRequest);
     }
 
-    public void deleteUserProgram(ProgramDeletingRequest request) {
+    public void deleteUserProgram(ProgramDeletingRequestDto request) {
         validateString(request.ownerEmail(), OWNER_EMAIL);
 
-        programAdapter.deleteUserProgram(request);
+        var domainRequest = new ProgramDeletingRequest(
+                request.programId(),
+                request.ownerEmail()
+        );
+
+        programAdapter.deleteUserProgram(domainRequest);
     }
 
-    public List<ProgramShortInfo> getOwnerPrograms(String ownerEmail) {
+    public List<ProgramShortInfoDto> getOwnerPrograms(String ownerEmail) {
         validateString(ownerEmail, PROGRAM_NAME);
 
-        return programAdapter.getOwnerProgram(ownerEmail);
+        var ownerPrograms = programAdapter.getOwnerProgram(ownerEmail);
+        return ownerPrograms.stream()
+                .map(programShortInfo -> new ProgramShortInfoDto(
+                        programShortInfo.programId(),
+                        programShortInfo.programName()
+                ))
+                .toList();
     }
-
-
 }

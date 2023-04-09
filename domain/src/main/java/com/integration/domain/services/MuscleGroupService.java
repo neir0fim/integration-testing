@@ -1,5 +1,6 @@
 package com.integration.domain.services;
 
+import com.integration.domain.dto.MuscleGroupDto;
 import com.integration.models.MuscleGroup;
 import com.integration.persistence.group.MuscleGroupAdapter;
 import org.springframework.stereotype.Service;
@@ -25,12 +26,21 @@ public class MuscleGroupService {
         groupAdapter.deleteMuscleGroup(groupId);
     }
 
-    public MuscleGroup getMuscleGroup(int groupId) {
-        return groupAdapter.getMuscleGroup(groupId);
+    public MuscleGroupDto getMuscleGroup(int groupId) {
+        var muscleGroup = groupAdapter.getMuscleGroup(groupId);
+        return new MuscleGroupDto(
+                muscleGroup.groupId(),
+                muscleGroup.groupName()
+        );
     }
 
-    public List<MuscleGroup> getAllMuscleGroup() {
-        return groupAdapter.getAllMuscleGroup();
+    public List<MuscleGroupDto> getAllMuscleGroup() {
+        return groupAdapter.getAllMuscleGroup().stream()
+                .map(muscleGroup -> new MuscleGroupDto(
+                        muscleGroup.groupId(),
+                        muscleGroup.groupName()
+                ))
+                .toList();
     }
 
     public void updateMuscleGroup(String groupName, int groupId) {

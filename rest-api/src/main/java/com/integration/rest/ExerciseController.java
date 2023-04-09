@@ -1,8 +1,8 @@
 package com.integration.rest;
 
+import com.integration.domain.dto.ExerciseDto;
+import com.integration.domain.dto.ExerciseUpdateRequestDto;
 import com.integration.domain.services.ExerciseService;
-import com.integration.models.exercise.Exercise;
-import com.integration.models.exercise.ExerciseUpdateRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,14 +23,14 @@ public class ExerciseController {
     }
 
     @PostMapping
-    public void addExercise(@RequestBody ExerciseUpdateRequest updateRequest) {
+    public void addExercise(@RequestBody ExerciseUpdateRequestDto updateRequest) {
         service.addExercise(updateRequest);
     }
 
     @PutMapping("/{exerciseId}")
     public void updateExercise(
             @PathVariable("exerciseId") int exerciseId,
-            @RequestBody ExerciseUpdateRequest updateRequest
+            @RequestBody ExerciseUpdateRequestDto updateRequest
     ) {
 
         service.updateExercise(exerciseId, updateRequest);
@@ -42,12 +42,12 @@ public class ExerciseController {
     }
 
     @GetMapping("/{exerciseId}")
-    public Exercise getExercise(@PathVariable("exerciseId") int exerciseId) {
+    public ExerciseDto getExercise(@PathVariable("exerciseId") int exerciseId) {
         return service.getExercise(exerciseId);
     }
 
     @GetMapping
-    public List<Exercise> getALLExercise() {
+    public List<ExerciseDto> getALLExercise() {
         return service.getALLExercise();
     }
 }
