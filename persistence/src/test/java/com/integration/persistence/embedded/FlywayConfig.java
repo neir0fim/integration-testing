@@ -1,4 +1,4 @@
-package com.integration.persistence.exercise;
+package com.integration.persistence.embedded;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.test.context.TestConfiguration;

@@ -1,7 +1,8 @@
-package com.integration.persistence.exercise;
+package com.integration.persistence.embedded;
 
 import com.integration.models.exercise.Exercise;
 import com.integration.models.exercise.ExerciseUpdateRequest;
+import com.integration.persistence.exercise.ExerciseAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.integration.persistence.exercise;
+package com.integration.persistence.testcontainers;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.testcontainers.containers.PostgreSQLContainer;
