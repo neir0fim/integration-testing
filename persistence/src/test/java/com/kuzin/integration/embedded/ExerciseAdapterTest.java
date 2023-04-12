@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJdbcTest
-@ContextConfiguration(classes = {ExerciseAdapter.class, FlywayConfig.class})
+@ContextConfiguration(classes = {ExerciseAdapter.class, FlywayConfig.class, TestApplication.class})
 class ExerciseAdapterTest {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;

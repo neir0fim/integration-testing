@@ -1,10 +1,10 @@
 package com.kuzin.integration.services;
 
 import com.kuzin.integration.dto.ExerciseDto;
+import com.kuzin.integration.util.ValidationUtil;
 import com.kuzin.integration.dto.ExerciseUpdateRequestDto;
 import com.kuzin.integration.models.exercise.ExerciseUpdateRequest;
 import com.kuzin.integration.persistence.exercise.ExerciseAdapter;
-import com.kuzin.integration.util.ValidationUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
