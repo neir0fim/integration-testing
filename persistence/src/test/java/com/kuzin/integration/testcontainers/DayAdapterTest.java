@@ -1,6 +1,6 @@
 package com.kuzin.integration.testcontainers;
 
-import com.kuzin.integration.embedded.TestApplication;
+import com.kuzin.integration.TestApplication;
 import com.kuzin.integration.models.day.Day;
 import com.kuzin.integration.persistence.day.DayAdapter;
 import org.junit.ClassRule;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ContextConfiguration(classes = {DayAdapter.class, FlywayConfig.class, TestApplication.class})
+@ContextConfiguration(classes = {DbTestConfig.class, TestApplication.class})
 @Testcontainers
 public class DayAdapterTest {
     @ClassRule

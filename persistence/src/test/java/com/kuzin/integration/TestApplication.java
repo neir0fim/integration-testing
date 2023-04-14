@@ -1,4 +1,4 @@
-package com.kuzin.integration.embedded;
+package com.kuzin.integration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

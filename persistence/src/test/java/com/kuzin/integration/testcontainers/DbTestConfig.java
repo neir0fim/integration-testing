@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import javax.sql.DataSource;
 
 @TestConfiguration
-public class FlywayConfig {
+public class DbTestConfig {
     @Bean
     public HikariDataSource dataSource(
             @Value("${DB_USERNAME}") String username,
