@@ -19,10 +19,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'junit:junit:4.13.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    //Mock bean and mock web mvc
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.5'
+    //for @With mock user
     testImplementation 'org.springframework.security:spring-security-test:6.0.2'
+    //for convert object to json string
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    //for security configuration
     testImplementation 'org.springframework.boot:spring-boot-starter-security:3.0.5'
+
+    //only for run test with coverage
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    testImplementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    testImplementation 'org.springframework.security:spring-security-ldap:6.0.2'
+    testImplementation 'org.springframework.security:spring-security-oauth2-client:6.0.2'
 }
 
 test {
