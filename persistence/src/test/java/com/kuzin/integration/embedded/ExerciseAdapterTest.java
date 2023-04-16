@@ -7,7 +7,6 @@ import com.kuzin.integration.persistence.exercise.ExerciseAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -17,7 +16,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJdbcTest
-@EnableAutoConfiguration
 @ContextConfiguration(classes = {FlywayConfig.class, TestApplication.class})
 class ExerciseAdapterTest {
     @Autowired
