@@ -3,11 +3,13 @@ package com.kuzin.integration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(properties = { "server.port=8078" })
-class FullContextSecondExampleTest {
+@SpringBootTest
+@TestPropertySource(locations = "classpath:test-property-source.properties")
+class FullContextThirdExampleTest {
 
 	@Value("${server.port}")
 	private String applicationPort;
@@ -18,6 +20,6 @@ class FullContextSecondExampleTest {
 	@Test
 	void contextLoads() {
 		assertEquals("/web-api", contextPath);
-		assertEquals("8078", applicationPort);
+		assertEquals("8067", applicationPort);
 	}
 }
