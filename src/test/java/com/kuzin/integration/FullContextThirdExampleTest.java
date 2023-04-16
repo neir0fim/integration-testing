@@ -8,7 +8,7 @@ import org.springframework.test.context.TestPropertySource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test-property-source.properties")
+@TestPropertySource(locations = "classpath:application-property-source.properties")
 class FullContextThirdExampleTest {
 
 	@Value("${server.port}")
