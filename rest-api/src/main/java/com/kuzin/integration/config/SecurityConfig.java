@@ -1,4 +1,4 @@
-package com.kuzin.integration.config.security;
+package com.kuzin.integration.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

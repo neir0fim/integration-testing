@@ -1,4 +1,4 @@
-package com.kuzin.integration.config.security;
+package com.kuzin.integration.config;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;

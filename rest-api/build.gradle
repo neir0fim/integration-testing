@@ -14,6 +14,9 @@ dependencies {
     implementation 'org.springframework:spring-web:6.0.7'
     implementation 'org.springframework.security:spring-security-web:6.0.2'
     implementation 'org.springframework.security:spring-security-oauth2-jose:6.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security:3.0.5'
+    implementation 'org.springframework.security:spring-security-oauth2-authorization-server:1.0.1'
+
     implementation project(':domain')
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

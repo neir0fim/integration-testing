@@ -1,6 +1,7 @@
 package com.kuzin.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kuzin.integration.config.SecurityConfig;
 import com.kuzin.integration.dto.DayDto;
 import com.kuzin.integration.services.DayService;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(controllers = DayController.class)
-@ContextConfiguration(classes = {TestApplication.class})
+@ContextConfiguration(classes = {SecurityConfig.class, JwtMockDecoder.class, TestApplication.class})
 class DayControllerTest {
     @Autowired
     protected ObjectMapper mapper;
