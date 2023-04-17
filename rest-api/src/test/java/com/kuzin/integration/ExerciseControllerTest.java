@@ -2,6 +2,7 @@ package com.kuzin.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kuzin.integration.config.SecurityConfig;
+import com.kuzin.integration.dto.ErrorDto;
 import com.kuzin.integration.dto.ExerciseDto;
 import com.kuzin.integration.dto.ExerciseUpdateRequestDto;
 import com.kuzin.integration.services.ExerciseService;
@@ -10,14 +11,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -119,5 +123,24 @@ class ExerciseControllerTest {
 
         verify(exerciseService, times(1))
                 .updateExercise(1, new ExerciseUpdateRequestDto("test", 1));
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void shouldReturnBadRequest() throws Exception {
+        when(exerciseService.getExercise(1)).thenThrow(new IllegalArgumentException());
+
+        MvcResult mvcResult = mockMvc.perform(get("/exercises/{id}", 1).accept(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        ErrorDto errorDto = new ErrorDto(HttpStatus.BAD_REQUEST.name(), "Bad request message");
+        String actualResponseBody =
+                mvcResult.getResponse().getContentAsString();
+        String expectedResponseBody =
+                mapper.writeValueAsString(errorDto);
+
+        assertEquals(expectedResponseBody, actualResponseBody);
     }
 }
