@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import java.util.List;
 
 import static org.mockito.Mockito.times;
@@ -52,7 +54,9 @@ class ExerciseControllerTest {
     @Test
     @WithMockUser
     void shouldReturnForbiddenIfUserIsNoAdmin() throws Exception {
-        mockMvc.perform(get("/exercises"))
+        var builder = MockMvcRequestBuilders.get("/exercises");
+
+        mockMvc.perform(builder)
                 .andExpect(status().isForbidden());
     }
 
