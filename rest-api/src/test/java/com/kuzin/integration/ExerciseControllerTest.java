@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ExerciseController.class)
-@ContextConfiguration(classes = {SecurityConfig.class, JwtMockDecoder.class, TestApplication.class})
+@ContextConfiguration(classes = {SecurityConfig.class, TestApplication.class})
 class ExerciseControllerTest {
 
     @Autowired
@@ -47,6 +47,13 @@ class ExerciseControllerTest {
     void shouldReturnUnauthorized() throws Exception {
         mockMvc.perform(get("/exercises"))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser
+    void shouldReturnForbiddenIfUserIsNoAdmin() throws Exception {
+        mockMvc.perform(get("/exercises"))
+                .andExpect(status().isForbidden());
     }
 
     @Test

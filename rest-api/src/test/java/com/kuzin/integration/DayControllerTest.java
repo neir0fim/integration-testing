@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(controllers = DayController.class)
-@ContextConfiguration(classes = {SecurityConfig.class, JwtMockDecoder.class, TestApplication.class})
+@ContextConfiguration(classes = {SecurityConfig.class, TestApplication.class})
 class DayControllerTest {
     @Autowired
     protected ObjectMapper mapper;
